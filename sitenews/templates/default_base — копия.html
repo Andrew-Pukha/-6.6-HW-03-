@@ -1,0 +1,33 @@
+{% load static %}   <!-- Команда для подключения статических файлов (оформление, картинки на сайте и т.д.) -->
+<!DOCTYPE html>
+<html>
+<head>
+
+    <title>{{ title }}</title>
+
+    <link type="text/css" href="{% static 'news/css/styles.css' %}" rel="stylesheet" />
+    <!------------------------------------------------------------------->
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<link rel="shortcut icon" href="{% static 'women/images/main.ico' %}" type="image/x-icon"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!------------------------------------------------------------------->
+</head>
+<body>
+
+
+<!-- Главное меню сайта: О нас, Контакты и т.д. -->
+<ul>
+    <li><a href="{% url 'home' %}">Главная страница</a> </li>
+    {% for m in menu %}
+    {% if not forloop.last %}<li>{% else %}<li class="last">{% endif %}
+        <a href="{% url m.url_name %}">{{ m.title }}</a>
+    </li>
+    {% endfor %}
+</ul>
+
+
+<!-- content-название блока. Главное меню сайта должно располагаться до "block content-endblock", как это и сделано. -->
+{% block content %} {% endblock %}
+
+</body>
+</html>
